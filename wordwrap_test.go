@@ -6,6 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestMain(t *testing.T) {
-	assert.Equal(t, 1, 1)
+func TestWordWrap(t *testing.T) {
+	assert.Equal(t, "", WordWrap("", 0))
 }

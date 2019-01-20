@@ -7,5 +7,5 @@ import (
 )
 
 func TestWordWrap(t *testing.T) {
-	assert.Equal(t, "", WordWrap("", 0))
+	assert.Equal(t, []string{""}, WordWrap("", 0))
 }

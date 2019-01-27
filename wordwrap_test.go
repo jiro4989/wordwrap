@@ -19,6 +19,7 @@ func TestWordWrap(t *testing.T) {
 	assert.Equal(t, []string{"a", "b"}, WordWrap("a b", 1))
 	assert.Equal(t, []string{"a", "b"}, WordWrap("a b", 2))
 	assert.Equal(t, []string{"a", "", "b"}, WordWrap("a\n\nb", 2))
+	assert.Equal(t, []string{"a", "", "", "b"}, WordWrap("a\n\n\nb", 2))
 	assert.Equal(t, []string{"a b"}, WordWrap("a b", 3))
 	assert.Equal(t, []string{"a b", "c"}, WordWrap("a b c", 3))
 	assert.Equal(t, []string{"a", "b c"}, WordWrap("a\nb c", 3))
@@ -31,6 +32,16 @@ func TestWordWrap(t *testing.T) {
 	assert.Equal(t, []string{"こんにち", "ワールド"}, WordWrap("こんにち ワールド", 8))
 	assert.Equal(t, []string{"こんにち", "ワールド"}, WordWrap("こんにち ワールド", 9))
 	assert.Equal(t, []string{"こんにち ワールド"}, WordWrap("こんにち ワールド", 10))
+	assert.Equal(t, []string{"こんにち ワールド"}, WordWrap("こんにち ワールド", 11))
+	assert.Equal(t, []string{"こんにち ワールド", "こんばんは"}, WordWrap("こんにち ワールド こんばんは", 14))
+}
+
+func TestWordWrapFixedWidth(t *testing.T) {
+	assert.Equal(t, []string{"abcde"}, WordWrapFixedWidth("abcde", 5))
+	assert.Equal(t, []string{"abcde", "fg"}, WordWrapFixedWidth("abcdefg", 5))
+	assert.Equal(t, []string{"ab", "cd", "ef", "g"}, WordWrapFixedWidth("abcdefg", 2))
+	assert.Equal(t, []string{"あいう", "えお"}, WordWrapFixedWidth("あいうえお", 5))
+	assert.Equal(t, []string{}, WordWrapFixedWidth("", 5))
 }
 
 func TestIsHalfRune(t *testing.T) {
